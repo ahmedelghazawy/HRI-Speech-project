@@ -2,6 +2,10 @@ import speech_recognition as sr
 from nltk import pos_tag
 from nltk import RegexpParser
 
+#Global variables
+drinks = ["coffee", "tea", "lemonade", "water"]
+objects = ["papers", "stapler", "pen", "book"]
+
 """
 Process commands based on the tokens existing in them and their respective types
 """
