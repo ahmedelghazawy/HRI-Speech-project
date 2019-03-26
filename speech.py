@@ -13,12 +13,18 @@ Process commands based on the tokens existing in them and their respective types
 def ProcessCommand(tokens):
     verb = ""
     noun = ""
+    determiner = ""
     #check for verb and noun within the sentence to understand the command
     for token in tokens:
         if token[1] == 'VB':
             verb = token[0]
-        elif token[1] == 'NN':
+        elif (token[1] == 'NN') or (token[1] == 'NNS'):
             noun = token[0]
+        if token[1] == 'DT':
+            determiner = token[0]
+
+    if (not(determiner == "")) and ( not (noun[len(noun) -1] == 's')):
+        noun = determiner + " " + noun
 
     #Check for user confirmation
     print("would you like me to " + verb + " you " + noun + "?")
@@ -78,7 +84,6 @@ def Listen():
 
             #If robot is active, process the command
             elif active == True:
-                print('You said : {}'.format(text))
                 text = str(text).split()
                 tokens = pos_tag(text)
                 #print(tokens)
