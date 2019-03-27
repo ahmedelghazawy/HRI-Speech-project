@@ -23,7 +23,7 @@ def ProcessCommand(tokens):
         if token[1] == 'DT':
             determiner = token[0]
 
-    if (not(determiner == "")) and ( not (noun[len(noun) -1] == 's')):
+    if (not(determiner == "")) and ((len(noun) > 0) and (not (noun[len(noun) -1] == 's'))):
         noun = determiner + " " + noun
 
     #Check for user confirmation
