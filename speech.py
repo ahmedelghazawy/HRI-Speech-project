@@ -19,11 +19,14 @@ def ProcessCommand(tokens):
         if token[1] == 'VB':
             verb = token[0]
         elif (token[1] == 'NN') or (token[1] == 'NNS'):
-            noun = token[0]
+            #check if the current noun is one of the known items for further processing
+            if (token[0] in drinks) or (token[0] in objects):
+                noun = token[0]
         if token[1] == 'DT':
             determiner = token[0]
 
     if (noun == "") or (verb == ""):
+        print("\n Sorry, i did not understand your command \n")
         return "no", verb, noun
 
     if (not(determiner == "")) and (not (noun[len(noun) -1] == 's')):
