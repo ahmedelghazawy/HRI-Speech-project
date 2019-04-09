@@ -1,9 +1,9 @@
 # Human-Robot Interaction Through Speech
 
 This repository is made for the final year project titled **Human-Robot Interaction Through Speech** in the School of Computing for the academic year 2018/2019 with project code **ML2**.<br/>
-**Author**: <u>Ahmed El Ghazawy.</u><br/>
-**Supervisor**: <u>Matteo Leonetti.</u><br/>
-**Assessor**: <u>Marc De Kamps.</u>
+**Author**: Ahmed El Ghazawy.<br/>
+**Supervisor**: Matteo Leonetti.<br/>
+**Assessor**: Marc De Kamps.
 
 ## Requirements:
 
