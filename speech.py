@@ -7,10 +7,10 @@ from nltk import tokenize
 drinks = ["coffee", "tea", "lemonade", "water"]
 objects = ["papers", "stapler", "pen", "book"]
 
-"""
-Process commands based on the tokens existing in them and their respective types
-"""
 def ProcessCommand(tokens):
+    """
+    Process commands based on the tokens existing in them and their respective types
+    """
     verb = ""
     noun = ""
     determiner = ""
@@ -39,10 +39,10 @@ def ProcessCommand(tokens):
     #Return to the user the confirmation alongside the items
     return confirmation, verb, noun
 
-"""
-Get the audio input from user and recognise it
-"""
 def GetCommand():
+    """
+    Get the audio input from user and recognise it
+    """
     r = sr.Recognizer()
 
     #Open microphone and listen to what humans say
@@ -60,11 +60,11 @@ def GetCommand():
             print("Recognition failed")
             return ""
 
-"""
-Stay on standby and keep listening until the activation word is said.
-When the Activation word is said, listen to the command and process it.
-"""
 def Listen():
+    """
+    Stay on standby and keep listening until the activation word is said.
+    When the Activation word is said, listen to the command and process it.
+    """
     #Initialise the recogniser to recieve the audio
     r = sr.Recognizer()
 
