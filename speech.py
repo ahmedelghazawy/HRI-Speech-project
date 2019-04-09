@@ -84,7 +84,7 @@ def Listen():
                 break
 
             #Activate robot in case keyword was said
-            if text == "hey Tiago":
+            if (text == "hey Tiago") or (text == "hey Thiago"):
                 print("Hello Human!")
                 active = True
 
