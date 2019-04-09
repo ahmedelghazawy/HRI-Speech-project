@@ -23,11 +23,11 @@ def ProcessCommand(tokens):
         if token[1] == 'DT':
             determiner = token[0]
 
-    if (noun == "") or (verb == ""):
+    if not (noun and verb):
         print("\n Sorry, i did not understand your command \n")
         return "no", verb, noun
 
-    if (not(determiner == "")) and (not (noun[len(noun) -1] == 's')):
+    if (determiner) and (not (noun[len(noun) -1] == 's')):
         noun = determiner + " " + noun
 
     #Check for user confirmation
