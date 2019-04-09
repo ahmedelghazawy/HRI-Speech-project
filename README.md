@@ -3,12 +3,11 @@
 Repository for maintaining the final year project for "Human-Robot interaction using speech".
 
 ## Requirements:
----
 
 For this project, some specific packages and programs are required to run it, some of them are as follows
 
 - Google API Client Library for Python
-- NLTK
+- NLTK (Natural Language Toolkit)
 - PyAudio
 - Python
 - SpeechRecognition
@@ -17,7 +16,6 @@ However, they do not need to be installed in the same order
 
 
 ## Activation:
-------
  How you activate the program is by opening a terminal, and typing in the next command (**_provided that all of the above are installed_**)
 
  ```
