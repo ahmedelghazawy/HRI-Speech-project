@@ -1,7 +1,5 @@
 import speech_recognition as sr
-from nltk import pos_tag
-from nltk import RegexpParser
-from nltk import tokenize
+from nltk import pos_tag, RegexpParser, tokenize
 
 #Global variables
 drinks = ["coffee", "tea", "lemonade", "water"]
