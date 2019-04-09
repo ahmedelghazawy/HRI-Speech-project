@@ -50,6 +50,8 @@ To activate the program, you need to open up a terminal and put in the following
 
  ## Recognised items and commands
 
+ ### Items
+
  Here is a list of the recognised items that the program would be able to locate:
 
  1. Coffee.
@@ -60,3 +62,9 @@ To activate the program, you need to open up a terminal and put in the following
  6. Stapler.
  7. Pen.
  8. Book.
+
+### Commands
+
+1. Hey Tiago.
+2. Bring/Make/Get me (_insert item_). (_**You can use any sentence that provides the same meaning**_)
+3. Stop Listening.
