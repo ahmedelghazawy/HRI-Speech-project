@@ -44,7 +44,7 @@ To activate the program, you need to open up a terminal and put in the following
  How the program flow goes is as follows:
  1. Wait till the program asks you to speak.
  2. To activate the robot/program, say "**Hey Tiago**".
- 3. If the program recognises the activation phrase, it shall say back "**Hello human!<br/> Speak your command**". Otherwise, it'll ask you to try again.
+ 3. If the program recognises the activation phrase, it shall say back <br/>**Hello human!<br/> Speak your command**<br/> Otherwise, it'll ask you to try again.
  4. If it has been activated, you can ask it to bring you either coffee/tea or items you'll need in an office. Then, it'll ask for user confirmation to confirm that this is what you have asked for. However, if it doesn't recognise the item or the command was too complex, then it will state that it didn't understand the command.
 5. After all the past steps are done successfully, you can end the program by saying "**Stop Listening**" when it asks you to speak (**Or even at the beginning of the runtime**).
 
