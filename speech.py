@@ -12,6 +12,7 @@ def ProcessCommand(tokens):
     verb = ""
     noun = ""
     determiner = ""
+    preposition = ""
     #check for verb and noun within the sentence to understand the command
     for token in tokens:
         if token[1] == 'VB':
@@ -20,12 +21,26 @@ def ProcessCommand(tokens):
             #check if the current noun is one of the known items for further processing
             if (token[0] in drinks) or (token[0] in objects):
                 noun = token[0]
-        if token[1] == 'DT':
+        elif token[1] == 'PRP':
+            preposition = token[0]
+        elif token[1] == 'DT':
             determiner = token[0]
 
-    if not (noun and verb):
-        print("\n Sorry, i did not understand your command \n")
-        return "no", verb, noun
+    # If no preposition is present in the sentence
+    if not preposition:
+        if not (noun and verb):
+            print("\n Sorry, i did not understand your command \n")
+            return "no", verb, noun
+    else:
+
+        # Check for the follow command
+        if verb == "follow":
+            if preposition == "me":
+                preposition = "you"
+            print("Would you like me to follow " + preposition + "?")
+            confirmation = GetCommand()
+            if confirmation == "yes":
+                return confirmation, verb, noun, preposition
 
     if (determiner) and (not (noun[len(noun) -1] == 's')):
         noun = determiner + " " + noun
@@ -35,7 +50,7 @@ def ProcessCommand(tokens):
     confirmation = GetCommand()
 
     #Return to the user the confirmation alongside the items
-    return confirmation, verb, noun
+    return confirmation, verb, noun, preposition
 
 def GetCommand():
     """
@@ -95,7 +110,10 @@ def Listen():
 
                 #Reply to human based on their command
                 if details[0] == "yes":
-                    print("OK, i will " + details[1] + " you " + details[2])
+                    if details[3] == "":
+                        print("OK, i will " + details[1] + " you " + details[2])
+                    else:
+                        print("OK, i will " + details[1] + " " + details[3])
                     active = False
                 elif details[0] == "no":
                     continue
