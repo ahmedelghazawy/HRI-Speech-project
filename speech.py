@@ -42,8 +42,9 @@ def ProcessCommand(tokens):
             if "yes" in confirmation:
                 return confirmation, verb, noun, preposition
 
-    if (determiner) and (not (noun[len(noun) -1] == 's')):
-        noun = determiner + " " + noun
+    if (determiner):
+        if not (noun[len(noun) -1] == 's'):
+            noun = determiner + " " + noun
 
     #Check for user confirmation
     print("would you like me to " + verb + " you " + noun + "?")
@@ -54,6 +55,9 @@ def ProcessCommand(tokens):
         confirmation = "no"
 
     #Return to the user the confirmation alongside the items
+    print("verb = " + verb)
+    print("noun = " + noun)
+    print("preposition = " + preposition)
     return confirmation, verb, noun, preposition
 
 def GetCommand():
@@ -77,63 +81,87 @@ def GetCommand():
             print("Recognition failed")
             return ""
 
+def FormatRequest(command):
+    
+    # If please is the last word of the command
+    if "please" in command[-7:]:
+        print("Case 1 activated")
+        command = command[:-7]
+    
+    # If the user asks with "can i have"
+    if "can i have" in command[:11]:
+        print("Case 2 activated")
+        command = "get me" + command[10:]
+
+    print("Formatted request: " + command + "\n")
+    return command
+
 def Listen():
     """
     Stay on standby and keep listening until the activation word is said.
     When the Activation word is said, listen to the command and process it.
     """
-    #Initialise the recogniser to recieve the audio
-    r = sr.Recognizer()
 
-    with sr.Microphone() as source:
+    # Initializing the text variable
+    text = ""
 
-        #Set robot active status to 0
-        active = False
-        while True:
-            if active == 0:
-                print('Speak')
-            elif active == 1:
+    #Set robot active status to 0
+    active = False
+    while True:
+        if active == 0:
+            print('Speak')
+        elif active == 1:
+            if not text:
                 print("Speak your command")
 
-            if not text:
-                text = GetCommand()
+        if not text:
+            text = GetCommand()
 
+        if text == "stop listening":
+            break
+
+        #Activate robot in case keyword was said
+        if (text == "hey Tiago") or (text == "hey Thiago"):
+            print("Hello Human!")
+            active = True
+        # In case command was integrated in activation
+        elif ("hey Tiago" in text) or ("hey Thiago" in text):
+            active = 1
+            if "Thiago" in text:
+                text = text[11:]
+            else:
+                text = text[10:]
+            text = FormatRequest(text)
+            continue
+
+        #If robot is active, process the command
+        elif active == True:
             if text == "stop listening":
                 break
+            text = FormatRequest(text)
+            text = str(text).split()
+            tokens = pos_tag(text)
+            #print(tokens)
+            details = ProcessCommand(tokens)
 
-            #Activate robot in case keyword was said
-            if (text == "hey Tiago") or (text == "hey Thiago"):
-                print("Hello Human!")
-                active = True
+            #Reply to human based on their command
+            if details[0] == "yes":
+                if (details[3] == "") or (details[3] == "me"):
+                    print("OK, i will " + details[1] + " you " + details[2])
+                else:
+                    print("OK, i will " + details[1] + " " + details[3])
+                active = False
+            elif details[0] == "no":
+                text = ""
+                continue
 
-            #If robot is active, process the command
-            elif active == True:
-                if text[:9] == "can i have":
-                    text = "get me" + text[10:]
-                elif text == "stop listening":
-                    break
-                text = str(text).split()
-                tokens = pos_tag(text)
-                #print(tokens)
-                details = ProcessCommand(tokens)
+        elif text == "":
+            print("Please try again")
 
-                #Reply to human based on their command
-                if details[0] == "yes":
-                    if details[3] == "":
-                        print("OK, i will " + details[1] + " you " + details[2])
-                    else:
-                        print("OK, i will " + details[1] + " " + details[3])
-                    active = False
-                elif details[0] == "no":
-                    continue
+        else:
+            print('You said : {}'.format(text))
 
-            elif text == "":
-                print("Please try again")
-
-            else:
-                print('You said : {}'.format(text))
-
-            text = ""
+        text = ""
 
 if __name__ == '__main__':
     Listen()
