@@ -39,7 +39,7 @@ def ProcessCommand(tokens):
                 preposition = "you"
             print("Would you like me to follow " + preposition + "?")
             confirmation = GetCommand()
-            if confirmation == "yes":
+            if "yes" in confirmation:
                 return confirmation, verb, noun, preposition
 
     if (determiner) and (not (noun[len(noun) -1] == 's')):
@@ -48,6 +48,10 @@ def ProcessCommand(tokens):
     #Check for user confirmation
     print("would you like me to " + verb + " you " + noun + "?")
     confirmation = GetCommand()
+    if ("yes" in confirmation) or ("yeah" in confirmation):
+        confirmation = "yes"
+    else:
+        confirmation = "no"
 
     #Return to the user the confirmation alongside the items
     return confirmation, verb, noun, preposition
@@ -103,6 +107,10 @@ def Listen():
 
             #If robot is active, process the command
             elif active == True:
+                if text[:9] == "can i have":
+                    text = "get me" + text[10:]
+                elif text == "stop listening":
+                    break
                 text = str(text).split()
                 tokens = pos_tag(text)
                 #print(tokens)
