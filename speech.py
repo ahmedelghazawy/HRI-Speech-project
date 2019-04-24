@@ -95,7 +95,8 @@ def Listen():
             elif active == 1:
                 print("Speak your command")
 
-            text = GetCommand()
+            if not text:
+                text = GetCommand()
 
             if text == "stop listening":
                 break
@@ -131,6 +132,8 @@ def Listen():
 
             else:
                 print('You said : {}'.format(text))
+
+            text = ""
 
 if __name__ == '__main__':
     Listen()
