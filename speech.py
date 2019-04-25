@@ -89,7 +89,7 @@ def FormatRequest(command):
         command = command[:-7]
     
     # If the user asks with "can i have"
-    if "can i have" in command[:11]:
+    if "can I have" in command[:11]:
         print("Case 2 activated")
         command = "get me" + command[10:]
 
