@@ -55,9 +55,6 @@ def ProcessCommand(tokens):
         confirmation = "no"
 
     #Return to the user the confirmation alongside the items
-    print("verb = " + verb)
-    print("noun = " + noun)
-    print("preposition = " + preposition)
     return confirmation, verb, noun, preposition
 
 def GetCommand():
@@ -85,15 +82,12 @@ def FormatRequest(command):
     
     # If please is the last word of the command
     if "please" in command[-7:]:
-        print("Case 1 activated")
         command = command[:-7]
     
     # If the user asks with "can i have"
     if "can I have" in command[:11]:
-        print("Case 2 activated")
         command = "get me" + command[10:]
 
-    print("Formatted request: " + command + "\n")
     return command
 
 def Listen():

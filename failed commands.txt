@@ -4,3 +4,8 @@ can i have some lemonade please (handled)
 longer confirmation (handled)
 bring me a pen (messes up the  preposition in confirmation and deletes the verb) (handled)
 stopping the program from the commanding phase (handled)
+
+Tester 2:
+
+Make me some lemonade
+Stop listening from the middle of a sentence/dialogue
