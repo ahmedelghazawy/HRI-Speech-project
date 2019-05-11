@@ -13,3 +13,11 @@ Stop listening from the middle of a sentence/dialogue
 Tester 4:
 
 Bring me some paper
+
+Tester 5:
+
+Bring me some tea
+
+Tester 8:
+
+Could you bring me a pen (error with the confirmation)
