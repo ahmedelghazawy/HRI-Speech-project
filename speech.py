@@ -111,7 +111,7 @@ def Listen():
         if not text:
             text = GetCommand()
 
-        if text == "stop listening":
+        if "stop listening" in text:
             break
 
         #Activate robot in case keyword was said
@@ -130,7 +130,7 @@ def Listen():
 
         #If robot is active, process the command
         elif active == True:
-            if text == "stop listening":
+            if "stop listening" in text:
                 break
             text = FormatRequest(text)
             text = str(text).split()
